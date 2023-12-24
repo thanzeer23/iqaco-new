@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import Accordition from "../../accordition/Accordition";
 
-const MobSideBar = ({ isOpen, onClose }) => {
+const MobSideBar = ({ isOpen, onClose, user }) => {
   return (
     <Drawer isOpen={isOpen} placement="left" onClose={onClose} size={"xs"}>
       <DrawerOverlay />
@@ -31,7 +31,7 @@ const MobSideBar = ({ isOpen, onClose }) => {
 
         <DrawerBody mt={"2rem"}>
           <Stack spacing="24px">
-            <Accordition color={"blue.100"} />
+            <Accordition color={"blue.100"} user={user} />
           </Stack>
         </DrawerBody>
       </DrawerContent>

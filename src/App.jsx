@@ -1,59 +1,84 @@
-import {
-  ChakraProvider,
-  Box,
-  useMediaQuery,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
-import Header from "./compenents/Header/Header";
-import SideBar from "./compenents/sidebar/desktop/SideBar";
-import MobSideBar from "./compenents/sidebar/mobile/MobSideBar";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { useRef } from "react";
+import { Routes, Route } from "react-router-dom";
+import HomeLayout from "./HomeLayout";
+import "./index.css";
+import Login from "./admin/login/Login";
+import DashboardLayout from "./admin/dashboard/DashboardLayout";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { LoggedInProtector } from "./middleware/LoggedInProtector";
+import { auth } from "./firebase/config";
+import { PrivateRoute } from "./middleware/PrivateRoute";
+import AdminHome from "./admin/AdminHome";
+import CreateSection from "./admin/pages/section/CreateSection";
+import EditSections from "./admin/pages/section/EditSections";
+import BlogPage from "./admin/pages/blog/BlogPage";
+import EditBlogPages from "./admin/pages/blog/EditBlogPages";
+import EditSectionWithId from "./admin/pages/section/EditSectionWithId";
+import EditPageId from "./admin/pages/blog/EditPageId";
+import Content from "./content/Content";
+import { LoadingProvider } from "./context/context";
+import HomePageLayout from "./HomePage";
 
 function App() {
-  const [isLargerThan850px] = useMediaQuery("(min-width: 850px)");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
+  const [user, setUser] = useState(null);
+  const [isFetching, setIsFetching] = useState(true);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (userData) => {
+      if (userData) {
+        setUser(userData);
+
+        setIsFetching(false);
+        return;
+      }
+      setUser(null);
+      setIsFetching(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <>
-      <ChakraProvider>
-        <Header />
-        <Box display="flex">
-          <Box width={"40%"} display={!isLargerThan850px && "none"}>
-            <SideBar />
-          </Box>
-          <Box display={isLargerThan850px && "none"}>
-            <MobSideBar isOpen={isOpen} onClose={onClose} />
-          </Box>
-          <Box width={"full"}>
-            <Box
-              width={"full"}
-              bgColor={"blue.400"}
-              height={"2.6rem"}
-              display={"flex"}
-              justifyContent={"flex-start"}
-              alignItems={"center"}
-              marginLeft={"0.1rem"}
-            >
-              <Box
-                marginLeft={"20px"}
-                rounded={"full"}
-                padding={"5px"}
-                cursor={"pointer"}
-                display={isLargerThan850px && "none"}
-                ref={btnRef}
-                onClick={onOpen}
-              >
-                <GiHamburgerMenu size={30} />
-              </Box>
-            </Box>
-            <Outlet />
-          </Box>
-        </Box>
-      </ChakraProvider>
-    </>
+    <LoadingProvider>
+      <Routes>
+        {/* frontend routes  */}
+
+        <Route element={<HomeLayout user={user} />}>
+          <Route path="/" element={<HomePageLayout user={user} />} />
+          <Route path="/page/:id" element={<Content user={user} />} />
+        </Route>
+
+        {/* login page route */}
+        <Route
+          path="/admin/login"
+          element={
+            !isFetching && (
+              <LoggedInProtector user={user}>
+                <Login />
+              </LoggedInProtector>
+            )
+          }
+        />
+        <Route
+          element={
+            !isFetching && (
+              <PrivateRoute user={user}>
+                <DashboardLayout />
+              </PrivateRoute>
+            )
+          }
+        >
+          <Route path="/admin/dashboard" element={<AdminHome />} />
+          <Route path="/admin/create-section" element={<CreateSection />} />
+          <Route path="/admin/edit-sections" element={<EditSections />} />
+          <Route
+            path="/admin/edit-section/:id"
+            element={<EditSectionWithId />}
+          />
+          <Route path="/admin/create-page" element={<BlogPage />} />
+          <Route path="/admin/edit-page/:id" element={<EditPageId />} />
+          <Route path="/admin/edit-pages" element={<EditBlogPages />} />
+        </Route>
+      </Routes>
+    </LoadingProvider>
   );
 }
 

@@ -2,11 +2,26 @@ import React from "react";
 import { ListItem } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
-const AccoriditionLink = ({ link }) => {
+const AccoriditionLink = ({ data }) => {
+  function setDynamicRoute(name) {
+    const url_name = name.replaceAll(" ", "-");
+    const url = "/page/" + url_name;
+    if (name !== "Home") {
+      return url;
+    } else {
+      return "/";
+    }
+  }
   return (
     <>
-      <NavLink to={"/details/sdfadsf"}>
-        <ListItem>{link}</ListItem>
+      <NavLink
+        to={
+          data.linkName.toUpperCase() === "Home".toUpperCase()
+            ? "/"
+            : setDynamicRoute(data.id)
+        }
+      >
+        <ListItem>{data.linkName}</ListItem>
       </NavLink>
     </>
   );
