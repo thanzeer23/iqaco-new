@@ -18,6 +18,7 @@ const HomeLayout = ({ user }) => {
   const [isLargerThan850px] = useMediaQuery("(min-width: 850px)");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+
   return (
     <ChakraProvider>
       <Header />
@@ -28,15 +29,17 @@ const HomeLayout = ({ user }) => {
         <Box display={isLargerThan850px && "none"}>
           <MobSideBar isOpen={isOpen} onClose={onClose} user={user} />
         </Box>
-        <Box width={"full"} minW={"70%"}>
+        <Box width={"full"} minW={"70%"} position={"relative"}>
           {!isLoading && (
             <Box
               width={"full"}
               bgColor={"blue.400"}
-              height={"2.6rem"}
+              height={"4.2rem"}
               display={"flex"}
               justifyContent={"flex-start"}
               alignItems={"center"}
+              roundedBottomLeft={"10px"}
+              roundedBottomRight={"10px"}
             >
               <Box
                 marginLeft={"20px"}

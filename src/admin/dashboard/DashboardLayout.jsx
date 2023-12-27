@@ -1,15 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../header/Header";
 import AdminSideBar from "../sidebar/AdminSideBar";
 import { useColorModes } from "@coreui/react";
 import { useSelector } from "react-redux";
-import { CToaster, CToast } from "@coreui/react";
+
 import "../scss/style.scss";
-import showToast from "../../helper/toastFunction";
-const DashboardLayout = () => {
-  const [toast, addToast] = useState(0);
-  const toaster = useRef();
+
+const DashboardLayout = ({ user }) => {
   const { isColorModeSet, setColorMode } = useColorModes(
     "coreui-free-react-admin-template-theme"
   );
@@ -35,7 +33,7 @@ const DashboardLayout = () => {
     <div>
       <AdminSideBar />
       <div className="wrapper d-flex flex-column min-vh-100">
-        <Header />
+        <Header user={user} />
 
         <div className="body flex-grow-1">
           <Outlet />

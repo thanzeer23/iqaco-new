@@ -47,18 +47,28 @@ const Login = () => {
   });
 
   const handleLogin = () => {
-    setLoading(true);
     try {
-      signInWithEmailAndPassword(auth, email, password).then((userData) => {
-        const user = userData.user;
+      setLoading(true);
 
-        if (user) {
-          navigate("/admin/dashboard");
-          addToast(showToast);
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userData) => {
+          const user = userData.user;
+
+          if (user) {
+            navigate("/admin/dashboard");
+            addToast(showToast);
+            setLoading(false);
+          } else {
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          alert(err);
+
           setLoading(false);
-        }
-      });
+        });
     } catch (error) {
+      alert(error);
       console.log(error);
       setLoading(false);
     }

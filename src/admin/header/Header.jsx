@@ -27,7 +27,7 @@ import {
 import AppHeaderDropdown from "./AppHeaderDropdown";
 import { setHeader } from "../redux/useReducer";
 
-const Header = () => {
+const Header = ({ user }) => {
   const headerRef = useRef();
   const { colorMode, setColorMode } = useColorModes(
     "coreui-free-react-admin-template-theme"
@@ -59,15 +59,9 @@ const Header = () => {
         </CHeaderToggler>
         <CHeaderNav className="d-none d-md-flex">
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
+            <CNavLink to="/admin/dashboard" component={NavLink}>
               Dashboard
             </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav className="ms-auto">
@@ -134,7 +128,7 @@ const Header = () => {
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
-          <AppHeaderDropdown />
+          <AppHeaderDropdown user={user} />
         </CHeaderNav>
       </CContainer>
     </CHeader>

@@ -3,7 +3,7 @@ import { CCol, CRow, CContainer, CCard, CCardHeader } from "@coreui/react";
 
 export const PageLayout = ({ children }) => {
   return (
-    <CContainer className="px-4" lg>
+    <CContainer lg>
       <CRow>
         <CCol xs={12}>{children}</CCol>
       </CRow>

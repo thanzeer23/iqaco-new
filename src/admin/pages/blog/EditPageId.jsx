@@ -109,6 +109,13 @@ const EditPageId = () => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    const initialContent = "<p>Initial content...</p>";
+
+    if (editorRef.current && initialContent) {
+      editorRef.current.setContent(initialContent);
+    }
+  }, []);
 
   return (
     <PageLayout>

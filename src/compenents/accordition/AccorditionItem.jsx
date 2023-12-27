@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   AccordionItem,
   AccordionButton,
@@ -6,16 +6,19 @@ import {
   AccordionIcon,
   Box,
   UnorderedList,
-  Center,
   Button,
   Text,
   Link,
 } from "@chakra-ui/react";
 import AccoriditionLink from "./AccoriditionLink";
-import { fetchDatas } from "../../api/getDatas";
-import { NavLink } from "react-router-dom";
 
-const AccorditionItem = ({ color, section, sectionPageData, user }) => {
+const AccorditionItem = ({
+  color,
+  section,
+  sectionPageData,
+  user,
+  onClick,
+}) => {
   return (
     <AccordionItem>
       <h2>
@@ -55,7 +58,7 @@ const AccorditionItem = ({ color, section, sectionPageData, user }) => {
           ) : (
             <UnorderedList maxW={"100%"} w={"full"}>
               {sectionPageData?.map((data) => (
-                <AccoriditionLink data={data} key={data.id} />
+                <AccoriditionLink data={data} key={data.id} onClick={onClick} />
               ))}
             </UnorderedList>
           )}

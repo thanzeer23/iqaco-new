@@ -1,23 +1,16 @@
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Stack,
-  Box,
-  FormLabel,
-  Input,
-  InputGroup,
-  Textarea,
-  Button,
-  InputLeftAddon,
-  InputRightAddon,
-  Select,
+  Image,
+  Center,
 } from "@chakra-ui/react";
 import Accordition from "../../accordition/Accordition";
+import mahaguruLogo from "../../../assets/logo.png";
 
 const MobSideBar = ({ isOpen, onClose, user }) => {
   return (
@@ -26,12 +19,18 @@ const MobSideBar = ({ isOpen, onClose, user }) => {
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader borderBottomWidth="1px">
-          Create a new account
+          <Center>
+            <Image
+              src={mahaguruLogo}
+              alt="mahaguruLogo"
+              className="logo_image"
+            />
+          </Center>
         </DrawerHeader>
 
         <DrawerBody mt={"2rem"}>
           <Stack spacing="24px">
-            <Accordition color={"blue.100"} user={user} />
+            <Accordition color={"blue.100"} user={user} onClose={onClose} />
           </Stack>
         </DrawerBody>
       </DrawerContent>

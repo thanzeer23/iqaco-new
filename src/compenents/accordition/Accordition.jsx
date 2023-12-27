@@ -3,7 +3,7 @@ import AccorditionItem from "./AccorditionItem";
 import { useEffect, useState } from "react";
 import { fetchDatas } from "../../api/getDatas";
 
-const Accordition = ({ color, user }) => {
+const Accordition = ({ color, user, onClose }) => {
   const [sections, setSections] = useState([]);
   const [pageData, setPageData] = useState([]);
   const getSections = async () => {
@@ -43,6 +43,7 @@ const Accordition = ({ color, user }) => {
               section={section}
               sectionPageData={sectionPageData}
               user={user}
+              onClick={onClose}
             />
           )
         );

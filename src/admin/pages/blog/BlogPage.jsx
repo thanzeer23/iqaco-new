@@ -15,7 +15,6 @@ import {
 } from "@coreui/react";
 import { Editor } from "@tinymce/tinymce-react";
 import { fetchDatas } from "../../../api/getDatas";
-import { createData } from "../../../api/CreateData";
 import showToast from "../../../helper/toastFunction";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/config";
@@ -66,6 +65,11 @@ const BlogPage = () => {
       setLoading(false);
     };
     fetchSections();
+    const initialContent = "<p>Initial content...</p>";
+
+    if (editorRef.current && initialContent) {
+      editorRef.current.setContent(initialContent);
+    }
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import { ListItem } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
-const AccoriditionLink = ({ data }) => {
+const AccoriditionLink = ({ data, onClick }) => {
   function setDynamicRoute(name) {
     const url_name = name.replaceAll(" ", "-");
     const url = "/page/" + url_name;
@@ -13,17 +13,22 @@ const AccoriditionLink = ({ data }) => {
     }
   }
   return (
-    <>
-      <NavLink
-        to={
-          data.linkName.toUpperCase() === "Home".toUpperCase()
-            ? "/"
-            : setDynamicRoute(data.id)
-        }
-      >
-        <ListItem>{data.linkName}</ListItem>
-      </NavLink>
-    </>
+    <NavLink
+      to={
+        data.linkName.toUpperCase() === "Home".toUpperCase()
+          ? "/"
+          : setDynamicRoute(data.id)
+      }
+      style={({ isActive, isPending, isTransitioning }) => {
+        return {
+          fontWeight: isActive ? "bold" : "",
+          color: isActive ? "red" : "black",
+          viewTransitionName: isTransitioning ? "slide" : "",
+        };
+      }}
+    >
+      <ListItem onClick={onClick}>{data.linkName}</ListItem>
+    </NavLink>
   );
 };
 
