@@ -30,7 +30,7 @@ const MobSideBar = ({ isOpen, onClose, user }) => {
 
         <DrawerBody mt={"2rem"}>
           <Stack spacing="24px">
-            <Accordition color={"blue.100"} user={user} onClose={onClose} />
+            <Accordition color={"#8E8DBE"} user={user} onClose={onClose} />
           </Stack>
         </DrawerBody>
       </DrawerContent>

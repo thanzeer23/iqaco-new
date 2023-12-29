@@ -1,5 +1,5 @@
 import React from "react";
-import { CCol, CContainer, CRow, CWidgetStatsF } from "@coreui/react";
+import { CContainer } from "@coreui/react";
 
 const NotFoundAdmin = () => {
   return (

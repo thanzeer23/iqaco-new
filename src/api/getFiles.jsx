@@ -1,4 +1,4 @@
-import { list, listAll, ref } from "firebase/storage";
+import { listAll, ref } from "firebase/storage";
 import { storage } from "../firebase/config";
 import { fetchDatas } from "./getDatas";
 

@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import { CFormSelect, CToaster } from "@coreui/react";
+import { CFormSelect } from "@coreui/react";
 import { NavLink } from "react-router-dom";
 
 const TableColumns = ({

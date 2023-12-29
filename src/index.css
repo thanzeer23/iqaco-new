@@ -17,6 +17,10 @@
 .login_container {
   width: 60%;
 }
+.carousal_custom {
+  width: 200px;
+  height: 200px;
+}
 
 /* table css start here  */
 /* Basic table styles */
@@ -66,6 +70,10 @@
     width: 80px;
     height: 80px;
   }
+  .carousal_custom {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -75,5 +83,8 @@
   }
   .login_container {
     width: 100%;
+  }
+  .carousal_custom {
+    height: 80px;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { CCol, CRow, CContainer, CCard, CCardHeader } from "@coreui/react";
+import { CCol, CRow, CContainer } from "@coreui/react";
 
 export const PageLayout = ({ children }) => {
   return (

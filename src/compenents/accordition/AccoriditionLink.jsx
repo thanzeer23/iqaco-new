@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItem } from "@chakra-ui/react";
+import { ListItem, Divider } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
 const AccoriditionLink = ({ data, onClick }) => {
@@ -27,7 +27,10 @@ const AccoriditionLink = ({ data, onClick }) => {
         };
       }}
     >
-      <ListItem onClick={onClick}>{data.linkName}</ListItem>
+      <ListItem onClick={onClick} fontSize={"1.2rem"}>
+        {data.linkName}
+      </ListItem>
+      <Divider />
     </NavLink>
   );
 };

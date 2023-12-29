@@ -1,11 +1,8 @@
 import React, { useRef, useState } from "react";
-import { CCard, CCardBody, CCardHeader, CToaster } from "@coreui/react";
-import { createData } from "../../../api/CreateData";
+import { CToaster } from "@coreui/react";
 import showToast from "../../../helper/toastFunction";
-import { PageLayout } from "../PageLayout";
 import SectionInput from "./SectionInput";
 import SectionLayout from "./sectionLayout";
-import { addOrUpdateDocument } from "../../../api/EditWithId";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/config";
 

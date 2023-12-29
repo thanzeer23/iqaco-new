@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, useMediaQuery, Image } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import Loading from "../common/Loading";
 
-const Carousal = ({ images }) => {
+const Carousal = ({ images, loading }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = images.length;
   const slideInterval = 3000;
+  const [isLargerThan650px] = useMediaQuery("(min-width: 650px)");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,43 +49,51 @@ const Carousal = ({ images }) => {
         {images?.map((imageUrl, index) => (
           <Box
             key={index}
-            className="gallery-cell"
+            className="gallery-cell carousal_custom"
             flex="0 0 100%"
             minWidth="100%"
-            height="200px"
             position="relative"
             overflow="hidden"
           >
-            <img
-              src={imageUrl?.imageURL}
-              alt={`Slide ${index + 1}`}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
+            {!loading && (
+              <Image
+                src={imageUrl?.imageURL}
+                alt={`Slide ${index + 1}`}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            )}
+            {loading && <Loading />}
           </Box>
         ))}
       </Box>
-      <Button
-        onClick={prevSlide}
-        position="absolute"
-        top="50%"
-        left="10px"
-        bgColor={"transparent"}
-        transform="translateY(-50%)"
-        zIndex="1"
-      >
-        <ChevronLeftIcon />
-      </Button>
-      <Button
-        onClick={nextSlide}
-        position="absolute"
-        bgColor={"transparent"}
-        top="50%"
-        right="10px"
-        transform="translateY(-50%)"
-        zIndex="1"
-      >
-        <ChevronRightIcon />
-      </Button>
+      {isLargerThan650px && (
+        <>
+          <Button
+            onClick={prevSlide}
+            className="hidden-btn"
+            position="absolute"
+            top="50%"
+            left="10px"
+            bgColor={"transparent"}
+            transform="translateY(-50%)"
+            zIndex="1"
+          >
+            <ChevronLeftIcon />
+          </Button>
+          <Button
+            onClick={nextSlide}
+            className="hidden-btn"
+            position="absolute"
+            bgColor={"transparent"}
+            top="50%"
+            right="10px"
+            transform="translateY(-50%)"
+            zIndex="1"
+          >
+            <ChevronRightIcon />
+          </Button>
+        </>
+      )}
     </Box>
   );
 };

@@ -1,17 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CCardImage,
-  CToaster,
-} from "@coreui/react";
-import { MdEdit } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
+import { CCard, CCardHeader, CCol, CToaster } from "@coreui/react";
 import { PageLayout } from "../pages/PageLayout";
-import Folder from "./Folder";
-import { getFiles } from "../../api/getFiles";
 import Loading from "../common/Loading";
 import { useParams } from "react-router-dom";
 import ImageViewCard from "./ImageViewCard";

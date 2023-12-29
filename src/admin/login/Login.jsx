@@ -12,7 +12,7 @@ import {
   FormErrorMessage,
   ChakraProvider,
 } from "@chakra-ui/react";
-import { CToaster, CToast } from "@coreui/react";
+import { CToaster } from "@coreui/react";
 import { useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
 import logo from "../../assets/logo.png";

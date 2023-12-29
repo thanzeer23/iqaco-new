@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   CCard,
   CCardBody,
-  CCardHeader,
-  CCol,
   CCardImage,
   CCardText,
   CButton,
@@ -17,10 +15,12 @@ const ImageViewCard = ({ link, id, path, handleDelete }) => {
       <CCardImage orientation="top" src={link} />
       <CCardBody>
         <CCardText style={{ textAlign: "center" }}>
-          <CButton size="sm" color="primary" style={{ marginRight: "1rem" }}>
-            <MdEdit />
-          </CButton>
-          <CButton size="sm" color="danger" onClick={() => handleDelete(path)}>
+          <CButton
+            size="sm"
+            style={{ width: "100%" }}
+            color="danger"
+            onClick={() => handleDelete(path)}
+          >
             <MdDelete />
           </CButton>
         </CCardText>

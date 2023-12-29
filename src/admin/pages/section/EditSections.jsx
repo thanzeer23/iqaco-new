@@ -17,7 +17,7 @@ import Loading from "../../common/Loading";
 import NoData from "../../common/NoData";
 
 const EditSections = () => {
-  const ItemsPerPage = 1;
+  const ItemsPerPage = 10;
   const [toast, addToast] = useState(0);
   const toaster = useRef();
   const [sections, setSections] = useState([]);

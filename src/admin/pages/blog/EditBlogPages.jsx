@@ -22,12 +22,14 @@ const EditBlogPages = () => {
   const toaster = useRef();
   const [sections, setSections] = useState([]);
   const [pageData, setPageData] = useState([]);
-  const ItemsPerPage = 5;
+  const ItemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
-  const indexOfLastItem = currentPage * ItemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - ItemsPerPage;
-  const currentItems = pageData.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const [currentItems, setCurrentItems] = useState([]);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const fetchPageData = async () => {
     setLoading(true);
@@ -58,6 +60,12 @@ const EditBlogPages = () => {
   const calculateIndex = (index) => {
     return index + 1 + (currentPage - 1) * ItemsPerPage;
   };
+  useEffect(() => {
+    const indexOfLastItem = currentPage * ItemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - ItemsPerPage;
+    const slicedItems = pageData.slice(indexOfFirstItem, indexOfLastItem);
+    setCurrentItems(slicedItems);
+  }, [currentPage, pageData]);
 
   useEffect(() => {
     fetchPageData();

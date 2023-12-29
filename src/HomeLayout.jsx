@@ -34,12 +34,10 @@ const HomeLayout = ({ user }) => {
             <Box
               width={"full"}
               bgColor={"blue.400"}
-              height={"4.2rem"}
+              height={"4.6rem"}
               display={"flex"}
               justifyContent={"flex-start"}
               alignItems={"center"}
-              roundedBottomLeft={"10px"}
-              roundedBottomRight={"10px"}
             >
               <Box
                 marginLeft={"20px"}

@@ -14,7 +14,7 @@ const HomePageLayout = ({ user }) => {
 
   const [homePage, setHomePage] = useState([]);
   const [sections, setSections] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [containerImages, setContainerImages] = useState({});
 
   const getHomePage = async () => {
@@ -47,6 +47,7 @@ const HomePageLayout = ({ user }) => {
 
   const getSliders = async () => {
     try {
+      setLoading(true);
       const containerData = await getFiles();
       const test = containerData.filteredContainer.filter(
         (data) => data[0] === homePage.id
@@ -55,9 +56,12 @@ const HomePageLayout = ({ user }) => {
       for (const data of test) {
         await getSlidersImage(data[0], data[1]);
       }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching sliders:", error);
     } finally {
+      setLoading(false);
     }
   };
 
@@ -134,7 +138,7 @@ const HomePageLayout = ({ user }) => {
         {/* <Carousal key={index + 1} /> */}
         {Object.entries(containerImages).map(
           ([containerName, images], index) => (
-            <Carousal images={images} key={index} />
+            <Carousal images={images} key={index} loading={loading} />
           )
         )}
       </Box>

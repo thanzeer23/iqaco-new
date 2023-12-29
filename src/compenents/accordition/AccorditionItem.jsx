@@ -36,6 +36,8 @@ const AccorditionItem = ({
               marginLeft={"1rem"}
               textAlign={"center"}
               mt={"1rem"}
+              fontSize={"1.3em"}
+              color={"white"}
             >
               {section?.section}
             </Text>

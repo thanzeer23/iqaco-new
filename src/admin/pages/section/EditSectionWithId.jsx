@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import SectionLayout from "./sectionLayout";
 import SectionInput from "./SectionInput";
-import { CCard, CCardBody, CCardHeader, CToaster } from "@coreui/react";
+import { CToaster } from "@coreui/react";
 import { useParams } from "react-router-dom";
 import { getDataWithId } from "../../../api/getDataWithId";
 import { db } from "../../../firebase/config";
